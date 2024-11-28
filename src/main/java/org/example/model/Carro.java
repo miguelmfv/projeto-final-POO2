@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import jakarta.persistence.*;
 
@@ -67,7 +67,7 @@ public class Carro {
     private List<Carro> listCarros = new ArrayList<>();
 
     @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL)
-
+    private ArrayList<Aluguel> listAlugueis= new ArrayList<>();
 
 
     public Carro(String marca, String modelo, String cor, String placa, int ano) {

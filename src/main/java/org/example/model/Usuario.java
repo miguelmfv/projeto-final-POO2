@@ -1,6 +1,9 @@
-package org.example;
+package org.example.model;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -10,7 +13,7 @@ public class Usuario {
     private String nome;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-
+    private List<Aluguel> alugueis = new ArrayList<>();
 
     public int getId() {
         return id;
