@@ -9,17 +9,21 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nome;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Aluguel> alugueis = new ArrayList<>();
 
-    public int getId() {
+    public Usuario() {
+
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -39,14 +43,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -56,13 +52,11 @@ public class Usuario {
     }
 
     private String email;
-    private String senha;
     private String telefone;
 
-    public Usuario(String nome, String email, String senha, String telefone) {
+    public Usuario(String nome, String email, String telefone) {
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
         this.telefone = telefone;
     }
 }

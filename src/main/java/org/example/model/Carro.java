@@ -7,9 +7,30 @@ import java.util.List;
 
 @Entity
 public class Carro {
+    public Carro() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String marca;
+    private String modelo;
+    private String cor;
+    private String placa;
+    private Float preco;
+    private int ano;
+    private Boolean alugado;
+
+    public Long getKilometragem() {
+        return kilometragem;
+    }
+
+    public void setKilometragem(Long kilometragem) {
+        this.kilometragem = kilometragem;
+    }
+
+    private Long kilometragem;
 
     public long getId() {
         return id;
@@ -59,24 +80,33 @@ public class Carro {
         this.ano = ano;
     }
 
-    private String marca;
-    private String modelo;
-    private String cor;
-    private String placa;
-    private int ano;
-    private List<Carro> listCarros = new ArrayList<>();
+    public Float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Float preco) {
+        this.preco = preco;
+    }
+
+    public Boolean getAlugado() {
+        return alugado;
+    }
+
+    public void setAlugado(Boolean alugado) {
+        this.alugado = alugado;
+    }
 
     @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL)
-    private ArrayList<Aluguel> listAlugueis= new ArrayList<>();
+    private List<Aluguel> listAluguel = new ArrayList<>();
 
-
-    public Carro(String marca, String modelo, String cor, String placa, int ano) {
+    public Carro(String marca, String modelo, String cor, String placa, int ano, Boolean alugado, Float preco, Long kilometragem) {
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
         this.placa = placa;
         this.ano = ano;
+        this.alugado = alugado;
+        this.preco = preco;
+        this.kilometragem = kilometragem;
     }
-
-    public List<Carro> listCarros() {return listCarros;}
 }

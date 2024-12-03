@@ -6,9 +6,11 @@ import java.util.Date;
 
 @Entity
 public class Aluguel {
+    public Aluguel() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     public long getKm_inicial() {
         return km_inicial;
@@ -42,14 +44,6 @@ public class Aluguel {
         this.dt_fim = dt_fim;
     }
 
-    public Boolean getAlugado() {
-        return alugado;
-    }
-
-    public void setAlugado(Boolean alugado) {
-        this.alugado = alugado;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -66,33 +60,29 @@ public class Aluguel {
         this.carro = carro;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private long km_inicial;
-    private long km_final;
+    private Long km_inicial;
+    private Long km_final;
     private Date dt_inicio;
     private Date dt_fim;
-    private Boolean alugado = false;
 
     @ManyToOne
     @JoinColumn
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "carro_id", nullable = false)
     private Carro carro;
 
-    public Aluguel(long km_inicial, long km_final, Date dt_inicio, Date dt_fim, Boolean alugado) {
-        this.km_final = km_final;
+    public Aluguel(Carro carro, Usuario usuario, Long km_inicial, Long km_final, Date dt_inicio, Date dt_fim) {
+        this.carro = carro;
+        this.usuario = usuario;
         this.km_inicial = km_inicial;
+        this.km_final = km_final;
         this.dt_inicio = dt_inicio;
         this.dt_fim = dt_fim;
-        this.alugado = alugado;
     }
 }
